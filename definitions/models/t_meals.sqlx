@@ -1,0 +1,14 @@
+config {
+  type: "incremental",
+  schema: "dataform",
+  uniqueKey: ["meal_id"]
+
+  
+
+}
+select
+meal_id,
+meal_name,
+'${dataform.projectConfig.vars.execution_date}' as executiondate
+from ${ref("meals")}
+where date='${dataform.projectConfig.vars.execution_date}'
